@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<HTML>
+	<HEAD>
+
+
+	</HEAD>
+	<BODY>
+		Click <b>Start Here</b> and enter the Fix Number found at the top of your JIRA
+
+		<br>
+		<br>
+
+		<button onclick="getFixType()">Start Here</button>
+		<br>
+		<br>
+		NOTE: Please use a lowercase 'r' in the Fix Number
+
+		<script>
+
+        function getFixType() {
+
+
+           var fixNumber = prompt("Please enter the Fix Version listed at the top of the JIRA with a lowercase 'r' (example: 21r3.0)");
+            var partsArray = fixNumber.split('r');
+
+
+                   if(partsArray[1].length > 3){
+                       //if there are more than 3 characters after the 'r' this is a maintenence release
+
+                       var testArray = partsArray[1].split('.');
+
+                       var zeroFound;
+                       var i;
+
+
+                       if(testArray.includes('0')){
+
+                           zeroFound = 1;
+
+                       }
+
+
+                       if(zeroFound == 1){
+                           //if a fix number contains 0 after the 'r' then it is a General Release fix
+                           alert("This is a General Release(Slow Train) Maintenence Release");
+                       }else{
+                           alert("This is a Limited Release(Fast Train) Maintenence Release");
+                       }
+
+                   }else{
+                       //if 3 or less characters after the 'r' this is not a maintenece release
+                       var testArray = partsArray[1].split('.');
+
+                        if(testArray[testArray.length - 1] == 0){
+                            alert("This is a General Release(Slow Train) regular fix");
+                        } else {
+                            alert("This is a Limited Release(Fast Train) regular fix");
+                        }
+                   }
+
+
+        }
+
+        </script>
+	</BODY>
+</HTML>
